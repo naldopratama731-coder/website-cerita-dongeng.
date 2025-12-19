@@ -3,66 +3,59 @@ import streamlit as st
 st.set_page_config(page_title="Dongeng Anak", page_icon="📚")
 
 st.title("📚 Website Dongeng Anak SD")
-st.write("Silahkan pilih cerita dongeng di bawah ini 👇")
+st.write("Klik salah satu judul cerita di bawah ini untuk membacanya 👇")
 
-# Pilihan cerita
-pilihan = st.selectbox(
-    "Pilih Cerita:",
-    [
-        "-- Pilih Cerita --",
-        "Kelinci dan Kura-kura",
-        "Rubah dan Anggur",
-        "Singa dan Tikus"
-    ]
-)
+# ===== CERITA 1 =====
+with st.expander("🐢🐇  KELINCI DAN KURA-KURA"):
+    st.markdown(
+        """
+        <div style="background:#FFEBEE; padding:12px; border-radius:10px;">
+        Pada suatu hari, seekor kelinci selalu mengejek kura-kura karena berjalan sangat lambat.
+        Kura-kura pun menantang kelinci untuk lomba lari.
 
-# Tombol tampilkan
-tampilkan = st.button("Tampilkan Cerita")
+        Saat lomba dimulai, kelinci berlari sangat cepat lalu merasa sombong dan beristirahat.
+        Namun ia tertidur, sementara kura-kura terus berjalan perlahan tapi tidak menyerah.
+        Akhirnya kura-kura sampai duluan dan menjadi pemenang.
 
-if tampilkan:
+        <b>Pesan Moral:</b> Jangan sombong dan jangan meremehkan orang lain.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    if pilihan == "-- Pilih Cerita --":
-        st.warning("Silahkan pilih cerita terlebih dahulu!")
+# ===== CERITA 2 =====
+with st.expander("🦊🍇  RUBAH DAN ANGGUR"):
+    st.markdown(
+        """
+        <div style="background:#E8F5E9; padding:12px; border-radius:10px;">
+        Seekor rubah lapar melihat anggur segar tergantung di dahan yang tinggi.
+        Ia melompat berkali-kali, namun tetap tidak bisa meraihnya.
 
-    elif pilihan == "Kelinci dan Kura-kura":
-        st.subheader("🐢🐇 Kelinci dan Kura-kura")
-        st.write("""
-Pada suatu hari, seekor kelinci selalu mengejek kura-kura karena berjalan sangat lambat.
-Kura-kura pun menantang kelinci untuk lomba lari.
+        Karena kesal, rubah pun pergi sambil berkata:
+        “Ah, pasti anggurnya asam!”
 
-Saat lomba dimulai, kelinci berlari sangat cepat lalu merasa sombong dan beristirahat.
-Namun ia tertidur, sementara kura-kura terus berjalan perlahan tapi tidak menyerah.
-Akhirnya kura-kura sampai duluan dan menjadi pemenang.
+        Padahal sebenarnya ia hanya tidak mampu mendapatkannya.
 
-Pesan Moral:
-Jangan sombong, dan jangan meremehkan orang lain.
-""")
+        <b>Pesan Moral:</b> Jangan meremehkan sesuatu hanya karena kamu tidak bisa memilikinya.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    elif pilihan == "Rubah dan Anggur":
-        st.subheader("🦊🍇 Rubah dan Anggur")
-        st.write("""
-Seekor rubah lapar melihat buah anggur segar tergantung di dahan yang tinggi.
-Ia melompat berkali-kali namun tetap tidak bisa meraihnya.
+# ===== CERITA 3 =====
+with st.expander("🦁🐭  SINGA DAN TIKUS"):
+    st.markdown(
+        """
+        <div style="background:#E3F2FD; padding:12px; border-radius:10px;">
+        Suatu hari seekor tikus kecil tertangkap oleh singa.
+        Tikus memohon agar dibebaskan dan berjanji suatu saat akan membantu singa.
 
-Karena kesal, rubah pun pergi sambil berkata:
-"Ah, pasti anggurnya asam!"
+        Beberapa hari kemudian singa terjebak dalam jaring pemburu.
+        Tikus datang dan menggigit tali jaring hingga putus.
+        Singa pun berhasil bebas.
 
-Padahal sebenarnya ia hanya tidak mampu mendapatkannya.
-
-Pesan Moral:
-Jangan menghina sesuatu hanya karena kamu tidak bisa memilikinya.
-""")
-
-    elif pilihan == "Singa dan Tikus":
-        st.subheader("🦁🐭 Singa dan Tikus")
-        st.write("""
-Suatu hari seekor tikus kecil tertangkap oleh singa.
-Tikus memohon agar dibebaskan dan berjanji suatu saat akan membantu singa.
-
-Beberapa hari kemudian singa terjebak dalam jaring pemburu.
-Tikus datang dan menggigit tali jaring hingga putus.
-Singa pun berhasil bebas.
-
-Pesan Moral:
-Sekecil apapun seseorang, ia tetap bisa membantu orang lain.
-""")
+        <b>Pesan Moral:</b> Sekecil apapun seseorang, ia tetap bisa menolong orang lain.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
