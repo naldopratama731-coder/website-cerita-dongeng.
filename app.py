@@ -1,61 +1,95 @@
 import streamlit as st
 
-st.set_page_config(page_title="Dongeng Anak", page_icon="📚")
+# ===============================
+# DATA CERITA
+# ===============================
+stories = {
+    "🐢 Kelinci dan Kura-Kura": {
+        "color": "#4CAF50",  # Hijau
+        "story": """
+Suatu hari, seekor kelinci sombong menantang kura-kura lomba lari.
+Kelinci sangat percaya diri karena merasa paling cepat.
+Saat lomba dimulai, kelinci berlari sangat kencang.
+Namun di tengah jalan ia berhenti dan tidur karena merasa pasti menang.
+Sementara itu, kura-kura berjalan perlahan tapi tidak pernah berhenti.
+Pada akhirnya, kura-kura yang sampai duluan ke garis finish!
+Kelinci pun malu dan menyesal karena terlalu sombong.
 
-st.title("📚 Website Dongeng Anak SD")
-st.write("Klik salah satu judul cerita di bawah ini untuk membacanya 👇")
+**Pesan moral: Jangan sombong, dan jangan meremehkan orang lain.**
+"""
+    },
 
-# ===== CERITA 1 =====
-with st.expander("🐢🐇  KELINCI DAN KURA-KURA"):
-    st.markdown(
-        """
-        <div style="background:#FFEBEE; padding:12px; border-radius:10px;">
-        Pada suatu hari, seekor kelinci selalu mengejek kura-kura karena berjalan sangat lambat.
-        Kura-kura pun menantang kelinci untuk lomba lari.
+    "🦊 Rubah dan Anggur": {
+        "color": "#FF9800",  # Oranye
+        "story": """
+Seekor rubah lapar melihat anggur yang tampak segar di pohon.
+Ia melompat berkali-kali untuk mengambilnya, tapi tetap tidak bisa.
+Akhirnya rubah menyerah, lalu berkata,
+"Ah, pasti anggurnya asam!"
 
-        Saat lomba dimulai, kelinci berlari sangat cepat lalu merasa sombong dan beristirahat.
-        Namun ia tertidur, sementara kura-kura terus berjalan perlahan tapi tidak menyerah.
-        Akhirnya kura-kura sampai duluan dan menjadi pemenang.
+Padahal sebenarnya ia hanya tidak mampu mengambilnya.
 
-        <b>Pesan Moral:</b> Jangan sombong dan jangan meremehkan orang lain.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+**Pesan moral: Jangan menjelekkan sesuatu hanya karena kita tidak bisa mendapatkannya.**
+"""
+    },
 
-# ===== CERITA 2 =====
-with st.expander("🦊🍇  RUBAH DAN ANGGUR"):
-    st.markdown(
-        """
-        <div style="background:#E8F5E9; padding:12px; border-radius:10px;">
-        Seekor rubah lapar melihat anggur segar tergantung di dahan yang tinggi.
-        Ia melompat berkali-kali, namun tetap tidak bisa meraihnya.
+    "🦁 Singa dan Tikus": {
+        "color": "#E91E63",  # Pink Merah
+        "story": """
+Pada suatu hari, seekor singa menangkap seekor tikus kecil.
+Tikus memohon agar dibebaskan, dan berjanji akan menolong singa suatu hari nanti.
+Singa tertawa, tapi akhirnya melepaskannya.
 
-        Karena kesal, rubah pun pergi sambil berkata:
-        “Ah, pasti anggurnya asam!”
+Beberapa hari kemudian, singa terjebak dalam jaring pemburu.
+Tikus datang dan menggigit jaring tersebut hingga putus.
+Singa pun bebas dan berterima kasih kepada tikus.
 
-        Padahal sebenarnya ia hanya tidak mampu mendapatkannya.
+**Pesan moral: Jangan meremehkan makhluk yang lebih kecil.**
+"""
+    },
+}
 
-        <b>Pesan Moral:</b> Jangan meremehkan sesuatu hanya karena kamu tidak bisa memilikinya.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+# ===============================
+# LOGIKA APLIKASI
+# ===============================
+if "page" not in st.session_state:
+    st.session_state.page = "menu"
 
-# ===== CERITA 3 =====
-with st.expander("🦁🐭  SINGA DAN TIKUS"):
-    st.markdown(
-        """
-        <div style="background:#E3F2FD; padding:12px; border-radius:10px;">
-        Suatu hari seekor tikus kecil tertangkap oleh singa.
-        Tikus memohon agar dibebaskan dan berjanji suatu saat akan membantu singa.
+st.set_page_config(page_title="Website Dongeng Anak", page_icon="📖")
 
-        Beberapa hari kemudian singa terjebak dalam jaring pemburu.
-        Tikus datang dan menggigit tali jaring hingga putus.
-        Singa pun berhasil bebas.
+# ===============================
+# HALAMAN MENU
+# ===============================
+if st.session_state.page == "menu":
+    st.title("📖 Kumpulan Cerita Dongeng Anak")
+    st.write("Silakan pilih salah satu judul cerita di bawah ini:")
 
-        <b>Pesan Moral:</b> Sekecil apapun seseorang, ia tetap bisa menolong orang lain.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    for title, data in stories.items():
+        if st.button(title, use_container_width=True):
+            st.session_state.page = title
+
+        st.markdown(
+            f"""
+            <style>
+            div[data-testid="stButton"] button {{
+                background-color: {data['color']} !important;
+                color: white !important;
+                font-weight: bold;
+                border-radius: 10px;
+                height: 50px;
+                font-size: 18px;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+# ===============================
+# HALAMAN CERITA
+# ===============================
+else:
+    st.title(st.session_state.page)
+    st.write(stories[st.session_state.page]["story"])
+
+    if st.button("⬅️ Kembali ke Daftar Cerita"):
+        st.session_state.page = "menu"
